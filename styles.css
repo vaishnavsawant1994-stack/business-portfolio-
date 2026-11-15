@@ -203,3 +203,5 @@ body[data-route="contact"] .page-hero{padding-bottom:40px}
 .visit-studio{margin-top:60px}
 }
 @media(max-width:390px){.hero h1{font-size:44px}.page-title{font-size:48px}}
+
+@media(max-width:760px){.hero h1 .mobile-break br{display:inline}}
