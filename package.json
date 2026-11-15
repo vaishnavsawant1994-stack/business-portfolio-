@@ -6,10 +6,13 @@
   "scripts": {
     "check": "node --check app.js && node --check api/contact.js",
     "test": "playwright test",
-    "dev": "serve -s . -l 3000"
+    "dev": "serve -s . -l 3000",
+    "audit:visual": "node scripts/audit-visuals.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",
-    "serve": "^14.2.4"
+    "serve": "^14.2.4",
+    "pngjs": "^7.0.0",
+    "pixelmatch": "^7.1.0"
   }
 }
