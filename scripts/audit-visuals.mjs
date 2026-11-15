@@ -23,7 +23,10 @@ try{
  const diff=new PNG({width:s.width,height:s.height});
  const pixels=pixelmatch(s.data,t.data,diff.data,s.width,s.height,{threshold:.12,includeAA:false});
  await writeFile(dir+"/"+id+"_difference.png",PNG.sync.write(diff));
- results.push({route,width,referenceStatus:a.status(),localStatus:b.status(),differentPixels:pixels,percentage:Number((pixels/(s.width*s.height)*100).toFixed(2)),state:"measured"});
+ const measure=()=>{const sel=[".site-header",".nav-layout","h1",".page-hero",".hero",".hero-description",".page-work-grid",".pricing-grid"];const nodes={};for(const name of sel){const el=document.querySelector(name);if(!el)continue;const st=getComputedStyle(el),rc=el.getBoundingClientRect();nodes[name]={fontFamily:st.fontFamily,fontSize:st.fontSize,fontWeight:st.fontWeight,letterSpacing:st.letterSpacing,lineHeight:st.lineHeight,background:st.backgroundColor,text:el.tagName==="H1"?el.textContent.trim():undefined,rect:{x:Math.round(rc.x),y:Math.round(rc.y),width:Math.round(rc.width),height:Math.round(rc.height)}}}return nodes};
+ const referenceStyles=await source.evaluate(measure);
+ const localStyles=await target.evaluate(measure);
+ results.push({route,width,referenceStatus:a.status(),localStatus:b.status(),differentPixels:pixels,percentage:Number((pixels/(s.width*s.height)*100).toFixed(2)),state:"measured",referenceStyles,localStyles});
  console.log("VISUAL",route,width,"different="+(pixels/(s.width*s.height)*100).toFixed(2)+"%");
  }catch(e){results.push({route,width,state:"not measured",error:String(e.message||e)});console.log("VISUAL UNVERIFIED",route,width,String(e.message||e))}}
  await context.close()}
