@@ -126,3 +126,7 @@ body[data-route="pricing"] .plan-card p{min-height:0}
 .work-tile .project-art{min-height:300px}
 }
 @media(max-width:390px){.hero .availability{font-size:13px}.hero h1{font-size:clamp(36px,11.5vw,44px)}.hero-actions .btn{font-size:13px;gap:8px;padding-left:13px}.hero-gallery{top:785px}.page-title{font-size:clamp(43px,9vw,50px)}}
+
+/* Fix original header.site-header selector specificity: floating pill must not reserve a 110px band in the document. */
+header.site-header{position:absolute;top:16px;left:0;right:0;z-index:80;padding:0;border:0;background:transparent}
+body[data-route="pricing"] .page-hero{padding-bottom:94px}
