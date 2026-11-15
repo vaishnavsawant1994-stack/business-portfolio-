@@ -1,0 +1,15 @@
+{
+  "name": "business-portfolio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "check": "node --check app.js && node --check api/contact.js",
+    "test": "playwright test",
+    "dev": "serve -s . -l 3000"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "serve": "^14.2.4"
+  }
+}
