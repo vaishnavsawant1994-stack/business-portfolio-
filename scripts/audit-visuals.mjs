@@ -18,7 +18,7 @@ try{
  const [a,b]=await Promise.all([source.goto("https://cobalt-web.framer.website"+route,{waitUntil:"domcontentloaded",timeout:30000}),target.goto("http://127.0.0.1:3010"+route,{waitUntil:"domcontentloaded",timeout:30000})]);
  if(!a?.ok()||!b?.ok())throw new Error("Response: reference="+a?.status()+" local="+b?.status());
  await source.waitForTimeout(1300);await target.waitForTimeout(350);
- const s=PNG.sync.read(await source.screenshot({animations:"disabled"}));const t=PNG.sync.read(await target.screenshot({animations:"disabled"}));
+ const sb=await source.screenshot({animations:"disabled"});const tb=await target.screenshot({animations:"disabled"});await writeFile(dir+"/"+id+"_reference.png",sb);await writeFile(dir+"/"+id+"_local.png",tb);const s=PNG.sync.read(sb);const t=PNG.sync.read(tb);
  if(s.width!==t.width||s.height!==t.height)throw new Error("Viewport dimension mismatch");
  const diff=new PNG({width:s.width,height:s.height});
  const pixels=pixelmatch(s.data,t.data,diff.data,s.width,s.height,{threshold:.12,includeAA:false});
