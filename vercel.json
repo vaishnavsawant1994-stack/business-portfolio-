@@ -3,6 +3,14 @@
   "framework": null,
   "rewrites": [
     {
+      "source": "/work",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/journal",
+      "destination": "/index.html"
+    },
+    {
       "source": "/work/:path*",
       "destination": "/index.html"
     },
